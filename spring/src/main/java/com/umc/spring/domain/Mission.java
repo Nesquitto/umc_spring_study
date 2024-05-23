@@ -2,6 +2,8 @@ package com.umc.spring.domain;
 
 import com.umc.spring.domain.common.BaseEntity;
 import com.umc.spring.domain.enums.MissionStatus;
+import com.umc.spring.dto.MissionRequest.CreateMissionRequest;
+import com.umc.spring.dto.RestaurantRequest.CreateRestaurantRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -43,9 +45,19 @@ public class Mission extends BaseEntity {
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
 
-    @Enumerated(EnumType.STRING)
-    private MissionStatus missionStatus;
+    private String missionStatus;
 
     @Column(nullable = false)
     private LocalDateTime deadline;
+
+    public static Mission toEntity(CreateMissionRequest requestDto, Restaurant restaurant){
+        return Mission.builder()
+            .name(requestDto.getName())
+            .point(requestDto.getPoint())
+            .description(requestDto.getDescription())
+            .restaurant(restaurant)
+            .missionStatus("ACTIVE")
+            .deadline(LocalDateTime.now())
+            .build();
+    }
 }
