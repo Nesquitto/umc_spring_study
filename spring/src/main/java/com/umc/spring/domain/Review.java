@@ -2,6 +2,8 @@ package com.umc.spring.domain;
 
 
 import com.umc.spring.domain.common.BaseEntity;
+import com.umc.spring.dto.RestaurantRequest.CreateRestaurantRequest;
+import com.umc.spring.dto.ReviewRequest.CreateReviewRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -31,11 +33,20 @@ public class Review extends BaseEntity {
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mission_id")
-    private Mission mission;
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 
     private float rating;
 
     private String content;
+
+    public static Review toEntity(User user, Restaurant restaurant, CreateReviewRequest requestDto){
+        return Review.builder()
+            .user(user)
+            .restaurant(restaurant)
+            .rating(requestDto.getRating())
+            .content(requestDto.getContent())
+            .build();
+    }
 
 }
