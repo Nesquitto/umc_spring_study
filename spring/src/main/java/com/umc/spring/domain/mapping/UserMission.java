@@ -2,10 +2,7 @@ package com.umc.spring.domain.mapping;
 
 import com.umc.spring.domain.Mission;
 import com.umc.spring.domain.User;
-import com.umc.spring.domain.enums.MissionStatus;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -37,9 +34,17 @@ public class UserMission {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @Enumerated(EnumType.STRING)
-    private MissionStatus missionStatus;
+    private String missionStatus;
 
     private int point;
+
+    public static UserMission toEntity(Mission mission, User user, String missionStatus, int point){
+        return UserMission.builder()
+            .user(user)
+            .mission(mission)
+            .missionStatus(missionStatus)
+            .point(point)
+            .build();
+    }
 
 }

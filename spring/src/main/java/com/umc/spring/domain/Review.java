@@ -2,7 +2,6 @@ package com.umc.spring.domain;
 
 
 import com.umc.spring.domain.common.BaseEntity;
-import com.umc.spring.dto.RestaurantRequest.CreateRestaurantRequest;
 import com.umc.spring.dto.ReviewRequest.CreateReviewRequest;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
