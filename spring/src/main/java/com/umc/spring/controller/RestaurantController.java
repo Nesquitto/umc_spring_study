@@ -3,6 +3,7 @@ package com.umc.spring.controller;
 import com.umc.spring.apiPayload.ApiResponse;
 import com.umc.spring.dto.RestaurantRequest.CreateRestaurantRequest;
 import com.umc.spring.service.RestaurantService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class RestaurantController {
 
     @PostMapping("/")
     public ApiResponse<String> createRestaurant(
-        @RequestBody CreateRestaurantRequest createRestaurantRequest
+        @RequestBody @Valid  CreateRestaurantRequest createRestaurantRequest
     ){
         return ApiResponse.onSuccess(restaurantService.createRestaurant(createRestaurantRequest));
     }

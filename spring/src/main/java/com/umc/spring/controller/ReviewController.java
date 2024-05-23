@@ -3,6 +3,7 @@ package com.umc.spring.controller;
 import com.umc.spring.apiPayload.ApiResponse;
 import com.umc.spring.dto.ReviewRequest.CreateReviewRequest;
 import com.umc.spring.service.ReviewService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class ReviewController {
 
     @PostMapping("/")
     public ApiResponse<String> createRestaurant(
-        @RequestBody CreateReviewRequest createReviewRequest
+        @RequestBody @Valid CreateReviewRequest createReviewRequest
     ){
         return ApiResponse.onSuccess(reviewService.createReview(createReviewRequest));
     }

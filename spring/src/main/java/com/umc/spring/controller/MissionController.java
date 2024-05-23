@@ -3,6 +3,7 @@ package com.umc.spring.controller;
 import com.umc.spring.apiPayload.ApiResponse;
 import com.umc.spring.dto.MissionRequest.CreateMissionRequest;
 import com.umc.spring.service.MissionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class MissionController {
 
     @PostMapping("/")
     public ApiResponse<String> createMission(
-        @RequestBody CreateMissionRequest createMissionRequest
+        @RequestBody @Valid CreateMissionRequest createMissionRequest
     ){
         return ApiResponse.onSuccess(missionService.createMission(createMissionRequest));
     }
