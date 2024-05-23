@@ -9,6 +9,7 @@ import com.umc.spring.dto.UserMissionRequest.CreateUserMissionRequest;
 import com.umc.spring.repository.MissionRepository;
 import com.umc.spring.repository.UserMissionRepository;
 import com.umc.spring.repository.UserRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,12 @@ public class UserMissionService {
                 .orElseThrow(() -> new TempHandler(ErrorStatus.MEMBER_NOT_FOUND));
         Mission mission = missionRepository.findById(requestDto.getMission())
                 .orElseThrow(() -> new TempHandler(ErrorStatus.MISSION_NOT_FOUND));
+
+        // 검증
+        List<UserMission> userMissionList = userMissionRepository.findAllByUserAndMission(user, mission);
+        if(!userMissionList.isEmpty()){
+            throw new TempHandler(ErrorStatus.USERMISSION_ALREADY_EXIST);
+        }
 
         userMissionRepository.save(UserMission.toEntity(mission, user, requestDto.getMissionState(),
             requestDto.getPoint()));

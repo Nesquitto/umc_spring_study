@@ -27,6 +27,9 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 예시,,,
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
+
+    USERMISSION_ALREADY_EXIST(HttpStatus.BAD_REQUEST, "USERMISSION4001", "이미 등록된 사용자미션입니다."),
+
     // For test
     TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
 
