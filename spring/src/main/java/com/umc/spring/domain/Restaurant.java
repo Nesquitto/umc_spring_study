@@ -1,6 +1,7 @@
 package com.umc.spring.domain;
 
 import com.umc.spring.domain.common.BaseEntity;
+import com.umc.spring.dto.RestaurantRequest.CreateRestaurantRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -40,5 +41,15 @@ public class Restaurant extends BaseEntity {
     private Category category;
 
     private String img_url;
+
+    public static Restaurant toEntity(CreateRestaurantRequest requestDto, Category category){
+        return Restaurant.builder()
+            .name(requestDto.getName())
+            .address(requestDto.getAddress())
+            .category(category)
+            .rating(0f)
+            .img_url(requestDto.getImgUrl())
+            .build();
+    }
 
 }
