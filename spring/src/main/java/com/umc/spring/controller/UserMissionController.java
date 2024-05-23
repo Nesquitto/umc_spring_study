@@ -5,6 +5,7 @@ import com.umc.spring.dto.MissionRequest.CreateMissionRequest;
 import com.umc.spring.dto.UserMissionRequest.CreateUserMissionRequest;
 import com.umc.spring.service.MissionService;
 import com.umc.spring.service.UserMissionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ public class UserMissionController {
 
     @PostMapping("/")
     public ApiResponse<String> createUserMission(
-        @RequestBody CreateUserMissionRequest createUserMissionRequest
+        @RequestBody @Valid CreateUserMissionRequest createUserMissionRequest
     ){
         return ApiResponse.onSuccess(userMissionService.createUserMission(createUserMissionRequest));
     }
