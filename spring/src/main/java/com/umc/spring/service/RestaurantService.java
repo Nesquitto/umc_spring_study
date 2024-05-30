@@ -4,9 +4,11 @@ import com.umc.spring.apiPayload.code.status.ErrorStatus;
 import com.umc.spring.apiPayload.exception.handler.TempHandler;
 import com.umc.spring.domain.Category;
 import com.umc.spring.domain.Restaurant;
+import com.umc.spring.dto.MissionResponse.GetMissionDetail;
 import com.umc.spring.dto.RestaurantRequest.CreateRestaurantRequest;
 import com.umc.spring.repository.CategoryRepository;
 import com.umc.spring.repository.RestaurantRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
